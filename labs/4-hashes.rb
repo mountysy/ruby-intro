@@ -29,16 +29,48 @@ bitcoin = gets.chomp
 bitcoin = bitcoin.to_f
 
 # 3. inspect the bitcoin_data hash
-puts bitcoin_data
-puts bitcoin_data ["time"]["updated"]
-puts bitcoin_data ["chartName"]
-puts bitcoin_data ["bpi"]["USD"]["symbol"]
-puts bitcoin_data ["bpi"]["EUR"]["rate_float"]
+# puts bitcoin_data
+# puts bitcoin_data ["time"]["updated"]
+# puts bitcoin_data ["chartName"]
+# puts bitcoin_data ["bpi"]["USD"]["symbol"]
+# puts bitcoin_data ["bpi"]["EUR"]["rate_float"]
 
 # puts bitcoin_data
-puts "1 bit coin is valued at #{bitcoin_data["bpi"]["USD"]["rate"]}"
-rate = bitcoin_data["bpi"]["USD"]["rate"]
-value = rate * bitcoin
-puts rate
-puts value
-puts "your bitcoin is worth #{value}"
+
+# rate = bitcoin_data["bpi"]["USD"]["rate_float"]
+# value = rate * bitcoin
+# puts "1 bitcoin is valued at #{rate}"
+# puts "your bitcoin is worth #{value}"
+
+puts "what currency do you use?"
+currency = gets.chomp
+puts rate = bitcoin_data["bpi"]["#{currency}"]
+
+# if currency == "USD"  
+#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+#     value = rate * bitcoin
+#     puts "1 bitcoin is valued at #{rate} #{currency}"
+#     puts "your bitcoin is worth #{value} #{currency}"
+# elsif currency == "GBP"  
+#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+#     value = rate * bitcoin
+#     puts "1 bitcoin is valued at #{rate} #{currency}"
+#     puts "your bitcoin is worth #{value} #{currency}"
+# elsif currency == "EUR" 
+#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+#     value = rate * bitcoin
+#     puts "1 bitcoin is valued at #{rate} #{currency}"
+#     puts "your bitcoin is worth #{value} #{currency}"
+# else
+#     puts "Error. Please try again."
+
+# end
+
+if rate = bitcoin_data["bpi"]["#{currency}"] == nil
+    puts "Currency not supported. Please try again."
+else
+    rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+    value = rate * bitcoin
+    puts "1 bitcoin is valued at #{rate} #{currency}"
+    puts "your bitcoin is worth #{value} #{currency}"
+end
