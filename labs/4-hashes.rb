@@ -44,27 +44,30 @@ bitcoin = bitcoin.to_f
 
 puts "what currency do you use?"
 currency = gets.chomp
-puts rate = bitcoin_data["bpi"]["#{currency}"]
 
-# if currency == "USD"  
-#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
-#     value = rate * bitcoin
-#     puts "1 bitcoin is valued at #{rate} #{currency}"
-#     puts "your bitcoin is worth #{value} #{currency}"
-# elsif currency == "GBP"  
-#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
-#     value = rate * bitcoin
-#     puts "1 bitcoin is valued at #{rate} #{currency}"
-#     puts "your bitcoin is worth #{value} #{currency}"
-# elsif currency == "EUR" 
-#     rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
-#     value = rate * bitcoin
-#     puts "1 bitcoin is valued at #{rate} #{currency}"
-#     puts "your bitcoin is worth #{value} #{currency}"
-# else
-#     puts "Error. Please try again."
 
-# end
+if currency == "USD"  
+    rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+    value = rate * bitcoin
+    puts "1 bitcoin is valued at #{rate} #{currency}"
+    puts "your bitcoin is worth #{value} #{currency}"
+elsif currency == "GBP"  
+    rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+    value = rate * bitcoin
+    puts "1 bitcoin is valued at #{rate} #{currency}"
+    puts "your bitcoin is worth #{value} #{currency}"
+elsif currency == "EUR" 
+    rate = bitcoin_data["bpi"]["#{currency}"]["rate_float"]
+    value = rate * bitcoin
+    puts "1 bitcoin is valued at #{rate} #{currency}"
+    puts "your bitcoin is worth #{value} #{currency}"
+else
+    puts "Error. Please try again."
+
+end
+
+
+#alternative 1
 
 if rate = bitcoin_data["bpi"]["#{currency}"] == nil
     puts "Currency not supported. Please try again."
@@ -74,3 +77,15 @@ else
     puts "1 bitcoin is valued at #{rate} #{currency}"
     puts "your bitcoin is worth #{value} #{currency}"
 end
+
+
+#alternative 2
+
+if ["USD", "GBP", "EUR"].include?(currency.upcase)  # array.include?(value) will return true if the value is inside the array, and false if the value is not inside the array
+    rate = bitcoin_data["bpi"]["#{currency}".upcase]["rate_float"]
+    value = rate * bitcoin
+    puts "1 bitcoin is valued at #{rate} #{currency}"
+    puts "your bitcoin is worth #{value} #{currency}"
+else
+    puts "Currency not supported. Please try again."
+end 
